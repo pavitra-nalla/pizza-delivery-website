@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700;800;900&family=DM+Sans:wght@300;400;500;600;700&display=swap');
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 20 47% 96%;
+    --foreground: 0 0% 16%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 0 0% 16%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 0 0% 16%;
+
+    --primary: 3 53% 50%;
+    --primary-foreground: 0 0% 100%;
+
+    --secondary: 16 58% 73%;
+    --secondary-foreground: 0 0% 16%;
+
+    --muted: 20 47% 96%;
+    --muted-foreground: 0 0% 45%;
+
+    --accent: 20 60% 93%;
+    --accent-foreground: 0 0% 16%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 20 20% 88%;
+    --input: 20 20% 88%;
+    --ring: 3 53% 50%;
+
+    --radius: 0.75rem;
+
+    --hero-bg: 16 58% 73%;
+    --cream-bg: 20 47% 96%;
+    --brand-red: 3 53% 50%;
+    --brand-red-hover: 5 74% 60%;
+    --brand-red-dark: 3 58% 34%;
+
+    --sidebar-background: 0 0% 98%;
+    --sidebar-foreground: 240 5.3% 26.1%;
+    --sidebar-primary: 3 53% 50%;
+    --sidebar-primary-foreground: 0 0% 98%;
+    --sidebar-accent: 20 60% 93%;
+    --sidebar-accent-foreground: 0 0% 16%;
+    --sidebar-border: 20 20% 88%;
+    --sidebar-ring: 3 53% 50%;
+
+    --font-display: 'Playfair Display', serif;
+    --font-body: 'DM Sans', sans-serif;
+  }
+
+  .dark {
+    --background: 0 0% 10%;
+    --foreground: 20 47% 96%;
+    --card: 0 0% 14%;
+    --card-foreground: 20 47% 96%;
+    --popover: 0 0% 14%;
+    --popover-foreground: 20 47% 96%;
+    --primary: 3 53% 50%;
+    --primary-foreground: 0 0% 100%;
+    --secondary: 16 30% 30%;
+    --secondary-foreground: 20 47% 96%;
+    --muted: 0 0% 18%;
+    --muted-foreground: 0 0% 60%;
+    --accent: 0 0% 18%;
+    --accent-foreground: 20 47% 96%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 100%;
+    --border: 0 0% 20%;
+    --input: 0 0% 20%;
+    --ring: 3 53% 50%;
+    --sidebar-background: 0 0% 10%;
+    --sidebar-foreground: 20 47% 96%;
+    --sidebar-primary: 3 53% 50%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 0 0% 18%;
+    --sidebar-accent-foreground: 20 47% 96%;
+    --sidebar-border: 0 0% 20%;
+    --sidebar-ring: 3 53% 50%;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+  }
+  h1, h2, h3, h4, h5, h6 {
+    font-family: var(--font-display);
+  }
+}
+
+@layer components {
+  .btn-primary {
+    @apply bg-primary text-primary-foreground px-8 py-3 rounded-full font-body font-semibold text-base
+    transition-all duration-300 hover:shadow-lg hover:scale-105 active:scale-95;
+  }
+  .btn-outline {
+    @apply border-2 border-primary text-primary px-8 py-3 rounded-full font-body font-semibold text-base
+    transition-all duration-300 hover:bg-primary hover:text-primary-foreground hover:scale-105 active:scale-95;
+  }
+  .card-pizza {
+    @apply bg-card rounded-2xl shadow-md hover:shadow-xl transition-all duration-300 overflow-hidden;
+  }
+  .section-padding {
+    @apply px-6 md:px-12 lg:px-20 py-16 md:py-24;
+  }
+  .ingredient-card {
+    @apply bg-card rounded-2xl p-4 cursor-pointer border-2 border-transparent
+    transition-all duration-300 hover:shadow-lg hover:-translate-y-1;
+  }
+  .ingredient-card-selected {
+    @apply border-primary bg-accent shadow-lg;
+  }
+}
+
+@layer utilities {
+  .text-display {
+    font-family: var(--font-display);
+  }
+  .text-body {
+    font-family: var(--font-body);
+  }
+  .hero-gradient {
+    background: hsl(var(--hero-bg));
+  }
+  .cream-gradient {
+    background: hsl(var(--cream-bg));
+  }
+}
