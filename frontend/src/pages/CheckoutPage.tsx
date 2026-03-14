@@ -32,7 +32,7 @@ const CheckoutPage = () => {
 
     try {
       // 1. Create pending order on our backend DB
-      const dbOrderRes = await fetch('http://localhost:5000/api/orders/init', {
+      const dbOrderRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/orders/init`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -53,7 +53,7 @@ const CheckoutPage = () => {
       if (!dbOrderRes.ok) throw new Error(dbOrder.message || 'Failed to initialize backend order');
 
       // 2. Call our API to create Razorpay Order
-      const orderRes = await fetch('http://localhost:5000/api/payments/create-order', {
+      const orderRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/payments/create-order`, {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ amount: cartTotal }),
@@ -73,7 +73,7 @@ const CheckoutPage = () => {
         handler: async function (response: any) {
           // 4. Verify Payment with the real dbOrderId
           try {
-            const verifyRes = await fetch('http://localhost:5000/api/payments/verify', {
+            const verifyRes = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/payments/verify`, {
               method: 'POST',
               headers: {
                 'Content-Type': 'application/json',
@@ -111,6 +111,7 @@ const CheckoutPage = () => {
         },
       };
 
+      console.log('--- RAZORPAY DEBUG ---', { orderData, options });
       const rzp = new window.Razorpay(options);
       
       rzp.on('payment.failed', function (response: any) {
