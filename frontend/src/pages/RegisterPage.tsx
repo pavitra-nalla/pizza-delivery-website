@@ -11,12 +11,15 @@ const RegisterPage = () => {
   const [password, setPassword] = useState('');
   const [showPw, setShowPw] = useState(false);
   const [registered, setRegistered] = useState(false);
+  const [error, setError] = useState('');
   const { register } = useApp();
   const navigate = useNavigate();
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
-    if (!name || !email || !password) return;
+    if (!name || !email || !password) { setError('Please fill in all fields'); return; }
+    if (password.length < 6) { setError('Password must be at least 6 characters'); return; }
+    
     register(name, email, password);
     setRegistered(true);
   };
@@ -48,25 +51,27 @@ const RegisterPage = () => {
             <h1 className="text-3xl font-display font-bold text-foreground">Create Account</h1>
             <p className="text-muted-foreground font-body mt-2">Join CHEEZO for the best pizza experience</p>
           </div>
+          {error && <p className="text-destructive text-sm font-body text-center bg-destructive/10 py-2 rounded-lg border border-destructive/20">{error}</p>}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="relative">
               <User className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input type="text" placeholder="Full name" value={name} onChange={e => setName(e.target.value)}
+              <input type="text" placeholder="Full name" value={name} onChange={e => { setName(e.target.value); setError(''); }}
                 className="w-full pl-11 pr-4 py-3 rounded-xl bg-accent font-body text-sm text-foreground outline-none focus:ring-2 focus:ring-primary transition-all" />
             </div>
             <div className="relative">
               <Mail className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input type="email" placeholder="Email address" value={email} onChange={e => setEmail(e.target.value)}
+              <input type="email" placeholder="Email address" value={email} onChange={e => { setEmail(e.target.value); setError(''); }}
                 className="w-full pl-11 pr-4 py-3 rounded-xl bg-accent font-body text-sm text-foreground outline-none focus:ring-2 focus:ring-primary transition-all" />
             </div>
             <div className="relative">
-              <Lock className="absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-              <input type={showPw ? 'text' : 'password'} placeholder="Password" value={password} onChange={e => setPassword(e.target.value)}
-                className="w-full pl-11 pr-11 py-3 rounded-xl bg-accent font-body text-sm text-foreground outline-none focus:ring-2 focus:ring-primary transition-all" />
+              <Lock className={`absolute left-4 top-1/2 -translate-y-1/2 w-4 h-4 ${error.includes('Password') ? 'text-destructive' : 'text-muted-foreground'}`} />
+              <input type={showPw ? 'text' : 'password'} placeholder="Password" value={password} onChange={e => { setPassword(e.target.value); setError(''); }}
+                className={`w-full pl-11 pr-11 py-3 rounded-xl bg-accent font-body text-sm text-foreground outline-none transition-all ${error.includes('Password') ? 'border border-destructive focus:ring-2 focus:ring-destructive' : 'focus:ring-2 focus:ring-primary'}`} />
               <button type="button" onClick={() => setShowPw(!showPw)} className="absolute right-4 top-1/2 -translate-y-1/2">
                 {showPw ? <EyeOff className="w-4 h-4 text-muted-foreground" /> : <Eye className="w-4 h-4 text-muted-foreground" />}
               </button>
             </div>
+            {error.includes('Password') && <p className="text-xs text-destructive font-body mt-1 ml-1">{error}</p>}
             <button type="submit" className="btn-primary w-full">Create Account</button>
           </form>
           <p className="text-center text-sm font-body text-muted-foreground">

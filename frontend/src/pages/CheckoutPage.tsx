@@ -54,7 +54,6 @@ const CheckoutPage = () => {
       try {
         dbOrder = JSON.parse(dbOrderText);
       } catch (e) {
-        console.error("Orders API invalid response:", dbOrderText);
         throw new Error("Server returned an invalid response checking out (not JSON). Check your API URL.");
       }
       if (!dbOrderRes.ok) throw new Error(dbOrder.message || 'Failed to initialize backend order');
@@ -70,7 +69,6 @@ const CheckoutPage = () => {
       try {
         orderData = JSON.parse(orderText);
       } catch (e) {
-        console.error("Payments API invalid response:", orderText);
         throw new Error("Server returned an invalid response for payment creation (not JSON). Check your API URL.");
       }
 
@@ -105,7 +103,6 @@ const CheckoutPage = () => {
             try {
               verifyData = JSON.parse(verifyText);
             } catch (e) {
-              console.error("Verify API invalid response:", verifyText);
               throw new Error("Server returned an invalid response during payment verification (not JSON).");
             }
             
@@ -132,7 +129,6 @@ const CheckoutPage = () => {
         },
       };
 
-      console.log('--- RAZORPAY DEBUG ---', { orderData, options });
       const rzp = new window.Razorpay(options);
       
       rzp.on('payment.failed', function (response: any) {

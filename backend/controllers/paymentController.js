@@ -34,7 +34,7 @@ export const createOrder = async (req, res, next) => {
       receipt: `receipt_${Date.now()}`,
     };
 
-    console.log("Creating Razorpay order with options:", options);
+// Removed debug log:
     const order = await instance.orders.create(options);
     console.log("Razorpay order response:", order);
 

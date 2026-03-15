@@ -1,10 +1,4 @@
-import pizzaMargherita from '@/assets/pizza-margherita.png';
-import pizzaBBQ from '@/assets/pizza-bbq.png';
-import pizzaVeggie from '@/assets/pizza-veggie.png';
-import pizzaHawaiian from '@/assets/pizza-hawaiian.png';
-import pizzaCheese from '@/assets/pizza-cheese.png';
-import pizzaMeat from '@/assets/pizza-meat.png';
-import heroPizza from '@/assets/hero-pizza.png';
+// Removed local pizza imports
 
 export interface Pizza {
   id: string;
@@ -50,80 +44,54 @@ export interface InventoryItem {
 }
 
 export const pizzas: Pizza[] = [
-  { id: '1', name: 'Classic Margherita', description: 'Fresh mozzarella, tomato sauce, and basil on a thin crust', price: 12.99, image: pizzaMargherita, rating: 4.8, category: 'veg', isVeg: true },
-  { id: '2', name: 'BBQ Chicken', description: 'Grilled chicken, red onions, cilantro with smoky BBQ sauce', price: 16.99, image: pizzaBBQ, rating: 4.7, category: 'non-veg', isVeg: false },
-  { id: '3', name: 'Garden Veggie', description: 'Bell peppers, mushrooms, olives, and fresh herbs', price: 14.99, image: pizzaVeggie, rating: 4.6, category: 'veg', isVeg: true },
-  { id: '4', name: 'Hawaiian Bliss', description: 'Sweet pineapple chunks with savory ham and cheese', price: 15.99, image: pizzaHawaiian, rating: 4.5, category: 'non-veg', isVeg: false },
-  { id: '5', name: 'Four Cheese', description: 'Mozzarella, parmesan, gorgonzola, and cheddar blend', price: 17.99, image: pizzaCheese, rating: 4.9, category: 'cheese-burst', isVeg: true },
-  { id: '6', name: 'Meat Feast', description: 'Pepperoni, sausage, bacon, and ground beef', price: 18.99, image: pizzaMeat, rating: 4.8, category: 'non-veg', isVeg: false },
-  { id: '7', name: 'Pepperoni Classic', description: 'Double pepperoni with extra mozzarella cheese', price: 14.99, image: pizzaMeat, rating: 4.7, category: 'popular', isVeg: false },
-  { id: '8', name: 'Cheese Burst Deluxe', description: 'Triple cheese stuffed crust with premium toppings', price: 19.99, image: pizzaCheese, rating: 4.9, category: 'cheese-burst', isVeg: true },
+  { id: '1', name: 'Classic Margherita', description: 'Fresh mozzarella, tomato sauce, and basil on a thin crust', price: 12.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773567078/pizza-margherita_kmhsl7.png', rating: 4.8, category: 'veg', isVeg: true },
+  { id: '2', name: 'BBQ Chicken', description: 'Grilled chicken, red onions, cilantro with smoky BBQ sauce', price: 16.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773566940/pizza-bbq_geikee.png', rating: 4.7, category: 'non-veg', isVeg: false },
+  { id: '3', name: 'Garden Veggie', description: 'Bell peppers, mushrooms, olives, and fresh herbs', price: 14.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773567171/pizza-veggie_gnkchl.png', rating: 4.6, category: 'veg', isVeg: true },
+  { id: '4', name: 'Hawaiian Bliss', description: 'Sweet pineapple chunks with savory ham and cheese', price: 15.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773567024/pizza-hawaiian_c0ckz4.png', rating: 4.5, category: 'non-veg', isVeg: false },
+  { id: '5', name: 'Four Cheese', description: 'Mozzarella, parmesan, gorgonzola, and cheddar blend', price: 17.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773566982/pizza-cheese_pkxwk8.png', rating: 4.9, category: 'cheese-burst', isVeg: true },
+  { id: '6', name: 'Meat Feast', description: 'Pepperoni, sausage, bacon, and ground beef', price: 18.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773567126/pizza-meat_eepffd.png', rating: 4.8, category: 'non-veg', isVeg: false },
+  { id: '7', name: 'Pepperoni Classic', description: 'Double pepperoni with extra mozzarella cheese', price: 14.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773567126/pizza-meat_eepffd.png', rating: 4.7, category: 'popular', isVeg: false },
+  { id: '8', name: 'Cheese Burst Deluxe', description: 'Triple cheese stuffed crust with premium toppings', price: 19.99, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773566982/pizza-cheese_pkxwk8.png', rating: 4.9, category: 'cheese-burst', isVeg: true },
 ];
 
-export const heroPizzaImage = heroPizza;
-
-import baseThinCrust from '@/assets/images/base/thin crust.jpg';
-import baseThickCrust from '@/assets/images/base/Pan Pizza.jpg';
-import baseCheeseBurst from '@/assets/images/base/cheese brust.jpg';
-import baseWheatCrust from '@/assets/images/base/Whole Wheat.jpg';
-
-import sauceTomato from '@/assets/images/Sauce/Classic Tomato.jpg';
-import sauceMarinara from '@/assets/images/Sauce/Spicy Marinara.jpg';
-import sauceGarlic from '@/assets/images/Sauce/Garlic Sauce.jpg';
-import sauceBbq from '@/assets/images/Sauce/BBQ Sauce.jpg';
-import saucePesto from '@/assets/images/Sauce/Pesto Sauce.jpg';
-
-import cheeseCheddar from '@/assets/images/cheese/Cheddar.jpg';
-import cheeseParmesan from '@/assets/images/cheese/Parmesan.jpg';
-import cheeseMozzarella from '@/assets/images/cheese/Mozzarella.jpg';
-import cheeseBlend from '@/assets/images/cheese/Cheese Blend.jpg';
-import extraCheese from '@/assets/images/cheese/Extra Cheese.jpg';
-
-import veggieCapsicum from '@/assets/images/veggies/capsicum.jpg';
-import veggieTomatoes from '@/assets/images/veggies/tomato.jpg';
-import veggiePaneer from '@/assets/images/veggies/Paneer.jpg';
-import veggieMushroom from '@/assets/images/veggies/mushroom.jpg';
-import veggieCorn from '@/assets/images/veggies/sweet corn.jpg';
-
-import meatChicken from '@/assets/images/Non-Veg/Chicken.jpg';
-import meatPepperoni from '@/assets/images/Non-Veg/pepperoni.jpg';
+export const heroPizzaImage = 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773566883/hero-pizza_ftanui.png';
 
 const placeholder = '/placeholder.svg';
 
 export const builderBases = [
-  { id: 'thin', name: 'Classic Thin Crust', description: 'Light crispy traditional pizza base', price: 0, image: baseThinCrust },
-  { id: 'thick', name: 'Pan Pizza', description: 'Soft and fluffy pan style base', price: 1.5, image: baseThickCrust },
-  { id: 'cheese-burst', name: 'Cheese Burst', description: 'Stuffed crust filled with melted cheese', price: 3.0, image: baseCheeseBurst },
-  { id: 'wheat', name: 'Whole Wheat', description: 'Healthy whole grain pizza base', price: 1.0, image: baseWheatCrust },
+  { id: 'thin', name: 'Classic Thin Crust', description: 'Light crispy traditional pizza base', price: 0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564084/thin_crust_f3t1l9.jpg' },
+  { id: 'thick', name: 'Pan Pizza', description: 'Soft and fluffy pan style base', price: 1.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564013/Pan_Pizza_cghqgw.jpg' },
+  { id: 'cheese-burst', name: 'Cheese Burst', description: 'Stuffed crust filled with melted cheese', price: 3.0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773563627/cheese_brust_jqlsqg.jpg' },
+  { id: 'wheat', name: 'Whole Wheat', description: 'Healthy whole grain pizza base', price: 1.0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564134/Whole_Wheat_blqbxf.jpg' },
 ];
 
 export const builderSauces = [
-  { id: 'tomato', name: 'Classic Tomato', description: 'Rich and tangy traditional tomato sauce', price: 0, image: sauceTomato },
-  { id: 'marinara', name: 'Spicy Marinara', description: 'Fiery tomato sauce with chili flakes', price: 0.5, image: sauceMarinara },
-  { id: 'bbq', name: 'Barbecue Sauce', description: 'Smoky sweet BBQ flavor', price: 0.5, image: sauceBbq },
-  { id: 'garlic', name: 'Garlic Sauce', description: 'Creamy roasted garlic butter sauce', price: 0.5, image: sauceGarlic },
-  { id: 'pesto', name: 'Pesto Sauce', description: 'Fresh basil and pine nut sauce', price: 1.0, image: saucePesto },
+  { id: 'tomato', name: 'Classic Tomato', description: 'Rich and tangy traditional tomato sauce', price: 0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564651/Classic_Tomato_ib9jbk.jpg' },
+  { id: 'marinara', name: 'Spicy Marinara', description: 'Fiery tomato sauce with chili flakes', price: 0.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564814/Spicy_Marinara_kdumeo.jpg' },
+  { id: 'bbq', name: 'Barbecue Sauce', description: 'Smoky sweet BBQ flavor', price: 0.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564596/BBQ_Sauce_zatkmr.jpg' },
+  { id: 'garlic', name: 'Garlic Sauce', description: 'Creamy roasted garlic butter sauce', price: 0.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564707/Garlic_Sauce_ylhvda.jpg' },
+  { id: 'pesto', name: 'Pesto Sauce', description: 'Fresh basil and pine nut sauce', price: 1.0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564761/Pesto_Sauce_vcgvqc.jpg' },
 ];
 
 export const builderCheeses = [
-  { id: 'mozzarella', name: 'Mozzarella', description: 'Classic stretchy Italian cheese', price: 0, image: cheeseMozzarella },
-  { id: 'cheddar', name: 'Cheddar', description: 'Sharp and tangy aged cheese', price: 0.5, image: cheeseCheddar },
-  { id: 'parmesan', name: 'Parmesan', description: 'Nutty and savory aged Italian cheese', price: 1.0, image: cheeseParmesan },
-  { id: 'blend', name: 'Cheese Blend', description: 'Perfect mix of cheeses', price: 1.5, image: cheeseBlend },
-  { id: 'extra', name: 'Extra Cheese', description: 'Double the cheesy goodness', price: 2.0, image: extraCheese },
+  { id: 'mozzarella', name: 'Mozzarella', description: 'Classic stretchy Italian cheese', price: 0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564339/Mozzarella_zoetdl.jpg' },
+  { id: 'cheddar', name: 'Cheddar', description: 'Sharp and tangy aged cheese', price: 0.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564190/Cheddar_dxgqrx.jpg' },
+  { id: 'parmesan', name: 'Parmesan', description: 'Nutty and savory aged Italian cheese', price: 1.0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564425/Parmesan_w7jduw.jpg' },
+  { id: 'blend', name: 'Cheese Blend', description: 'Perfect mix of cheeses', price: 1.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564234/Cheese_Blend_hv7l77.jpg' },
+  { id: 'extra', name: 'Extra Cheese', description: 'Double the cheesy goodness', price: 2.0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564279/Extra_Cheese_aiqcl3.jpg' },
 ];
 
 export const builderVeggies = [
-  { id: 'capsicum', name: 'Capsicum', description: 'Fresh green capsicum slices', price: 0.5, image: veggieCapsicum },
-  { id: 'tomatoes', name: 'Tomatoes', description: 'Fresh tomato slices', price: 0.5, image: veggieTomatoes },
-  { id: 'mushrooms', name: 'Mushrooms', description: 'Fresh mushroom slices', price: 0.75, image: veggieMushroom },
-  { id: 'corn', name: 'Corn', description: 'Sweet corn kernels', price: 0.5, image: veggieCorn },
-  { id: 'paneer', name: 'Paneer', description: 'Fresh paneer cubes', price: 1.0, image: veggiePaneer },
+  { id: 'capsicum', name: 'Capsicum', description: 'Fresh green capsicum slices', price: 0.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564921/capsicum_m1vqzm.jpg' },
+  { id: 'tomatoes', name: 'Tomatoes', description: 'Fresh tomato slices', price: 0.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773565117/tomato_u3iu6n.jpg' },
+  { id: 'mushrooms', name: 'Mushrooms', description: 'Fresh mushroom slices', price: 0.75, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564981/mushroom_r3toww.jpg' },
+  { id: 'corn', name: 'Corn', description: 'Sweet corn kernels', price: 0.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773565073/sweet_corn_keoiuh.jpg' },
+  { id: 'paneer', name: 'Paneer', description: 'Fresh paneer cubes', price: 1.0, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773565030/Paneer_rmmll3.jpg' },
 ];
 
 export const builderMeats = [
-  { id: 'pepperoni', name: 'Pepperoni', description: 'Spiced Italian cured meat slices', price: 1.5, image: meatPepperoni },
-  { id: 'chicken', name: 'Chicken', description: 'Seasoned chicken chunks', price: 1.5, image: meatChicken },
+  { id: 'pepperoni', name: 'Pepperoni', description: 'Spiced Italian cured meat slices', price: 1.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564547/pepperoni_wzwa1p.jpg' },
+  { id: 'chicken', name: 'Chicken', description: 'Seasoned chicken chunks', price: 1.5, image: 'https://res.cloudinary.com/dhlbyi8w1/image/upload/v1773564492/Chicken_fjt4pa.jpg' },
 ];
 
 export const mockOrders: Order[] = [

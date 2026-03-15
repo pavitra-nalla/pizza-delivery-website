@@ -1,11 +1,10 @@
-import { useState, useMemo } from 'react';
+import { useState, useMemo, useEffect } from 'react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Check, ChevronRight, ChevronLeft, ShoppingCart } from 'lucide-react';
 import { useNavigate } from 'react-router-dom';
-import { builderBases, builderSauces, builderCheeses, builderVeggies, builderMeats } from '@/data/mockData';
+import { builderBases, builderSauces, builderCheeses, builderVeggies, builderMeats, heroPizzaImage as heroPizza } from '@/data/mockData';
 import { useApp } from '@/context/AppContext';
 import Navbar from '@/components/Navbar';
-import heroPizza from '@/assets/hero-pizza.png';
 
 const steps = ['Choose Base', 'Choose Sauce', 'Choose Cheese', 'Choose Veggies', 'Choose Meat', 'Review Order'];
 
@@ -34,6 +33,46 @@ const PizzaBuilderPage = () => {
   const { addToCart } = useApp();
   const navigate = useNavigate();
 
+  const [backendPrice, setBackendPrice] = useState<number | null>(null);
+  const [isCalculating, setIsCalculating] = useState(false);
+  const [orderId, setOrderId] = useState<string | null>(null);
+
+  useEffect(() => {
+    if (step === 5) {
+      const fetchPrice = async () => {
+        setIsCalculating(true);
+        try {
+          const res = await fetch(`${import.meta.env.VITE_API_URL || 'http://localhost:5000'}/api/build`, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({
+              base: selectedBase,
+              sauce: selectedSauce,
+              cheese: selectedCheese,
+              veggies: selectedVeggies,
+              meat: selectedMeats,
+            }),
+          });
+          const data = await res.json();
+          if (res.ok) {
+            setBackendPrice(Number(data.totalPrice));
+            setOrderId(data.orderId);
+          } else {
+            console.error('Failed to get price from server:', data.message);
+          }
+        } catch (error) {
+          console.error('Error fetching price:', error);
+        } finally {
+          setIsCalculating(false);
+        }
+      };
+      
+      fetchPrice();
+    }
+  }, [step, selectedBase, selectedSauce, selectedCheese, selectedVeggies, selectedMeats]);
+
   const toggleVeggie = (id: string) => {
     setSelectedVeggies(prev => prev.includes(id) ? prev.filter(v => v !== id) : [...prev, id]);
   };
@@ -53,7 +92,7 @@ const PizzaBuilderPage = () => {
 
   const handleCheckout = () => {
     addToCart(
-      { id: 'custom-' + Date.now(), name: 'Custom Pizza', description: 'Your custom creation', price: totalPrice, image: heroPizza, rating: 5, category: 'popular', isVeg: selectedMeats.length === 0 },
+      { id: orderId || ('custom-' + Date.now()), name: 'Custom Pizza', description: 'Your custom creation', price: backendPrice ?? totalPrice, image: heroPizza, rating: 5, category: 'popular', isVeg: selectedMeats.length === 0 },
       1,
       { base: selectedBase, sauce: selectedSauce, cheese: selectedCheese, veggies: selectedVeggies, meat: selectedMeats }
     );
@@ -228,11 +267,11 @@ const PizzaBuilderPage = () => {
                         </div>}
                         <div className="flex justify-between py-6 text-2xl font-display font-bold items-center">
                           <span>Total</span>
-                          <span className="text-[#C0433A] text-3xl">₹{totalPrice.toFixed(2)}</span>
+                          <span className="text-[#C0433A] text-3xl">₹{(backendPrice ?? totalPrice).toFixed(2)}</span>
                         </div>
                       </div>
-                      <button onClick={handleCheckout} className="w-full bg-[#C0433A] hover:bg-[#A0352A] text-white text-lg font-bold py-4 rounded-xl shadow-lg transition-transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3">
-                        <ShoppingCart className="w-6 h-6" /> Add to Cart & Checkout
+                      <button onClick={handleCheckout} disabled={isCalculating} className="w-full bg-[#C0433A] hover:bg-[#A0352A] text-white text-lg font-bold py-4 rounded-xl shadow-lg transition-transform hover:scale-[1.02] active:scale-95 flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed">
+                        <ShoppingCart className="w-6 h-6" /> {isCalculating ? 'Calculating...' : 'Add to Cart & Checkout'}
                       </button>
                     </div>
                   )}
@@ -305,7 +344,7 @@ const PizzaBuilderPage = () => {
                   </div>
 
                   <div className="relative z-10 space-y-3 bg-accent/30 p-6 rounded-2xl">
-                    <p className="text-4xl font-display font-black text-[#C0433A]">₹{totalPrice.toFixed(2)}</p>
+                    <p className="text-4xl font-display font-black text-[#C0433A]">₹{(backendPrice ?? totalPrice).toFixed(2)}</p>
                     <div className="flex flex-col items-center gap-1">
                       <p className="text-sm font-semibold text-foreground">
                         {[selectedBase, selectedSauce, selectedCheese].filter(Boolean).length} / 3 Base Items

@@ -81,7 +81,7 @@ You need two terminal windows to run both servers.
 1. **Run the Backend (Terminal 1):**
    ```bash
    cd backend
-   npm run server   # Or `npm start` depending on your package.json
+   npm start
    ```
 
 2. **Run the Frontend (Terminal 2):**
@@ -89,7 +89,7 @@ You need two terminal windows to run both servers.
    cd frontend
    npm run dev
    ```
-   Open your browser and navigate to `http://localhost:8080` (or the port Vite provides).
+   Open your browser and navigate to the local URL provided in the terminal (usually `http://localhost:8080`).
 
 ## Future Improvements
 - [ ] User authentication and JWT authorization.
